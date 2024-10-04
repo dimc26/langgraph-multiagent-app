@@ -20,7 +20,7 @@ def main() -> None:
         config=graph_config,
     )
     save_results(graph)
-    play_answer("Ya he gestionado tu puta petición")
+    play_answer("Ya he gestionado tu petición")
 
 if __name__ == "__main__":
     main()

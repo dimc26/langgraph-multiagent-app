@@ -26,7 +26,6 @@ class GraphState(TypedDict):
 def decider_node(state: GraphState) -> dict[str, Any]:
     recognized, text = parse_voice()
     if not recognized:
-        play_answer("No he podido procesar tu petición")
         return {"recognized": False}
     play_answer("Dame un momento que gestiono tu petición")
     res = decider_chain.invoke({"text": text})
