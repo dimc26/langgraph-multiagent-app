@@ -1,0 +1,110 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "editor"
+version = "0.1.0"
+authors = ["Los Bixos de Syntonize"]
+description = "Artículo Langgraph"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+openai = "^1.40.0"
+langchain = "^0.2.12"
+langchain-openai = "^0.1.20"
+python-docx = "^1.1.2"
+pymupdf = "^1.24.10"
+docxcompose = "^1.4.0"
+langgraph = "^0.2.19"
+pillow = "^10.4.0"
+streamlit = "^1.39.0"
+speechrecognition = "^3.10.4"
+pyaudio = "^0.2.14"
+pyttsx3 = "^2.98"
+keyboard = "^0.13.5"
+gtts = "^2.5.3"
+pygame = "^2.6.1"
+pydub = "^0.25.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+ruff = "^0.5.0"
+mypy = "^1.10.1"
+coverage = "^7.5.4"
+python-dotenv = "^1.0.1"
+pre-commit = "^3.7.1"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+disallow_subclassing_any = false
+exclude = [
+    '^setup\.py$',
+    "venv",
+]
+
+[[tool.mypy.overrides]]
+module = [
+    "pymupdf.*",
+    "docx.*",
+    "docxcompose.*",
+    "fitz.*",
+    "lxml.*",
+    "langgraph.*",
+    "langchain_core.*",
+    "langchain_openai.*",
+]
+ignore_missing_imports = true
+
+[tool.ruff]
+lint.select = [
+    "E",    # pycodestyle
+    "W",    # pycodestyle
+    "F",    # pyflake
+    "I",    # isort
+    "S",    # flake8-bandit
+    "B",    # flake8-bugbear
+    "UP",   # pyupgrade
+    "N",    # pep8-naming
+    "D",    # pydocstyle
+    "RUF",  # Ruff specific rules
+]
+
+exclude = [
+    ".git",
+    ".idea",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    "venv",
+    "build",
+    "assets/*/*",
+    "docs/",
+]
+
+lint.ignore = [
+    "D100",     # Missing docstring in public module
+    "D101",     # Missing docstring in public class
+    "D102",     # Missing docstring in public method
+    "D103",     # Missing docstring in public function
+    "D105",     # Missing docstring in magic method
+    "D107",     # Missing docstring in __init__
+    "D203",     # no-blank-line-before-class (conflict with D211)
+    "D213",     # multi-line-summary-second-line (conflict with D212)
+    "S314",     # use defusedxml instead of xml
+    "S608",     # SQL Injection - Should be enabled at some point?
+]
+
+line-length = 120
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["D104"]
+"tests/*" = ["S", "D"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-wrap-aliases = true
