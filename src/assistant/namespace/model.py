@@ -11,7 +11,7 @@ class CorreoItem(BaseModel):
 
 class CalendarioItem(BaseModel):
     dia: str
-    hora: time
+    hora: Opt[time]
 
 
 class ViajeItem(BaseModel):

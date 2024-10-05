@@ -1,6 +1,6 @@
 from langgraph.graph.state import CompiledGraph, RunnableConfig
 
-from assistant.graph.decider import build_assistant_graph
+from assistant.graph.decider_graph import build_assistant_graph
 from assistant.utils.text_to_speech import play_answer
 
 
@@ -15,10 +15,11 @@ def main() -> None:
         max_concurrency=2,
         recursion_limit=50,
     )
-    graph.invoke(
+    res = graph.invoke(
         input={"recognized": True},
         config=graph_config,
     )
+    print(res)
     save_results(graph)
     play_answer("Ya he gestionado tu petición")
 

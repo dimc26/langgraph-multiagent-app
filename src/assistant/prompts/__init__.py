@@ -1,5 +1,8 @@
 import os
 
+from langchain_core.messages import SystemMessage
+from langchain_core.prompts.chat import ChatPromptTemplate, HumanMessagePromptTemplate
+
 from assistant import config as cfg
 
 
@@ -8,3 +11,15 @@ def load_prompt_by_name(prompt_name: str) -> str:
 
     with open(filepath) as f:
         return f.read()
+
+
+def build_decider_prompt(prompt) -> ChatPromptTemplate:
+    system_msg = SystemMessage(
+        load_prompt_by_name(f"{prompt}_system"),
+        name="base",
+    )
+    human_msg_prompt = load_prompt_by_name(f"{prompt}_human")
+    return ChatPromptTemplate(
+        [system_msg, HumanMessagePromptTemplate.from_template(human_msg_prompt)],
+        input_variables=["text"],
+    )

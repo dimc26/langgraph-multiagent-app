@@ -1,35 +1,11 @@
-from typing import Any, TypedDict
+from typing import Any
 
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.graph import CompiledGraph, Send
 
 from assistant.namespace.enum import ViajeNode
-from assistant.namespace.model import ViajeItem
+from assistant.tools.viaje import ViajeState, book_node, flights_node, packagin_node, parser_viaje_node
 
-
-class ViajeState(TypedDict):
-    user_input: str
-    viaje: ViajeItem
-    packaging: str
-    flights: str
-    book: str
-
-
-def parser_viaje_node(state: ViajeState) -> ViajeState:
-    print("viaje")
-    return state
-
-def flights_node(state: ViajeState) -> dict[str, str]:
-    print("vuelo")
-    return {"flights": "Vuelo 9822Y"}
-
-def book_node(state: ViajeState) -> dict[str, str]:
-    print("book")
-    return {"book": "Hotel Palace"}
-
-def packagin_node(state: ViajeState) -> dict[str, str]:
-    print("maleta")
-    return {"packaging": "Te aconsejo llevar una rebequita"}
 
 def route_pages(state: ViajeState) -> Any:
     messages = []
@@ -51,13 +27,13 @@ def build_viaje_graph() -> CompiledGraph:
     graph_builder.add_node(ViajeNode.PACKING.value, packagin_node)
     graph_builder.add_edge(START, ViajeNode.PARSER.value)
     graph_builder.add_conditional_edges(
-            ViajeNode.PARSER.value,
-            route_pages,
-            [
-                ViajeNode.FLIGHTS.value,
-                ViajeNode.PACKING.value,
-            ],
-        )
+        ViajeNode.PARSER.value,
+        route_pages,
+        [
+            ViajeNode.FLIGHTS.value,
+            ViajeNode.PACKING.value,
+        ],
+    )
     graph_builder.add_node(ViajeNode.BOOK.value, book_node)
 
     graph_builder.add_edge(ViajeNode.FLIGHTS.value, ViajeNode.BOOK.value)

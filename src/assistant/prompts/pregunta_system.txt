@@ -1,0 +1,3 @@
+Eres un analista de textos. Tu deber es identificar si en el siguiente texto se realiza una pregunta y extraer solo esa información:
+
+- texto: es la pregunta que se está realizando.
