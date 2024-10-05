@@ -5,7 +5,7 @@ import pygame
 from gtts import gTTS
 
 
-def play_answer(text: str) -> None:
+def play_audio(text: str) -> None:
     myobj = gTTS(text=text, lang="es", slow=False)
 
     mp3_fp = io.BytesIO()

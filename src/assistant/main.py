@@ -1,7 +1,7 @@
 from langgraph.graph.state import CompiledGraph, RunnableConfig
 
 from assistant.graph.decider_graph import build_assistant_graph
-from assistant.utils.text_to_speech import play_answer
+from assistant.utils.text_to_speech import play_audio
 
 
 def save_results(graph: CompiledGraph) -> None:
@@ -21,7 +21,7 @@ def main() -> None:
     )
     print(res)
     save_results(graph)
-    play_answer("Ya he gestionado tu petición")
+    play_audio("Ya he gestionado tu petición")
 
 if __name__ == "__main__":
     main()

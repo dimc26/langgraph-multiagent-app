@@ -4,27 +4,27 @@ from typing import Optional as Opt
 from langchain_core.pydantic_v1 import BaseModel
 
 
-class CorreoItem(BaseModel):
-    destinatario: str
-    mensaje: str
+class MailItem(BaseModel):
+    receiver: str
+    message: str
 
 
-class CalendarioItem(BaseModel):
-    dia: str
-    hora: Opt[time]
+class CalendarItem(BaseModel):
+    day: str
+    hour: Opt[time]
 
 
-class ViajeItem(BaseModel):
-    destino: str
-    fecha: str
+class TravelItem(BaseModel):
+    destination: str
+    date: str
 
 
-class PreguntaItem(BaseModel):
-    texto: str
+class QuestionItem(BaseModel):
+    text: str
 
 
 class DeciderOptions(BaseModel):
-    correo: bool
-    calendario: bool
-    viaje: bool
-    pregunta: bool
+    mail: bool
+    calendar: bool
+    travel: bool
+    question: bool

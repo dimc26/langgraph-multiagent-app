@@ -4,17 +4,18 @@ from langgraph.constants import END
 from langgraph.graph import START, StateGraph
 from langgraph.graph.graph import CompiledGraph, Send
 
-from assistant.graph.calendario_graph import build_calendario_graph
-from assistant.graph.correo_graph import build_correo_graph
-from assistant.graph.pregunta_graph import build_pregunta_graph
-from assistant.graph.viaje_graph import build_viaje_graph
+from assistant.graph.calendar_graph import build_calendar_graph
+from assistant.graph.mail_graph import build_mail_graph
+from assistant.graph.question_graph import build_question_graph
+from assistant.graph.travel_graph import build_travel_graph
 from assistant.namespace.enum import Graph, Node
 from assistant.tools.decider import GraphState, decider_node
+from assistant.utils.text_to_speech import play_audio
 
-viaje_graph = build_viaje_graph()
-correo_graph = build_correo_graph()
-calendario_graph = build_calendario_graph()
-pregunta_graph = build_pregunta_graph()
+travel_graph = build_travel_graph()
+mail_graph = build_mail_graph()
+calendar_graph = build_calendar_graph()
+question_graph = build_question_graph()
 
 
 def route_pages(state: GraphState) -> Any:
@@ -33,10 +34,12 @@ def route_pages(state: GraphState) -> Any:
                 send_state = {f"{field}_input": user_input}
 
                 message = Send(
-                    node=f"{field}_node",
+                    node=f"{field}_graph",
                     arg=send_state,
                 )
                 messages.append(message)
+        if not messages:
+            play_audio("Lo siento, no he podido categorizar tu petición.")
 
     return messages
 
@@ -48,17 +51,17 @@ def build_assistant_graph() -> CompiledGraph:
     graph_builder.add_conditional_edges(
         Node.DECIDER.value,
         route_pages,
-        [Graph.CORREO.value, Graph.CALENDARIO.value, Graph.VIAJE.value, Graph.PREGUNTA.value, END],
+        [Graph.MAIL.value, Graph.CALENDAR.value, Graph.TRAVEL.value, Graph.QUESTION.value, END],
     )
 
-    graph_builder.add_node(Graph.CORREO.value, correo_graph)
-    graph_builder.add_node(Graph.CALENDARIO.value, calendario_graph)
-    graph_builder.add_node(Graph.VIAJE.value, viaje_graph)
-    graph_builder.add_node(Graph.PREGUNTA.value, pregunta_graph)
+    graph_builder.add_node(Graph.MAIL.value, mail_graph)
+    graph_builder.add_node(Graph.CALENDAR.value, calendar_graph)
+    graph_builder.add_node(Graph.TRAVEL.value, travel_graph)
+    graph_builder.add_node(Graph.QUESTION.value, question_graph)
 
-    graph_builder.add_edge(Graph.CORREO.value, END)
-    graph_builder.add_edge(Graph.CALENDARIO.value, END)
-    graph_builder.add_edge(Graph.VIAJE.value, END)
-    graph_builder.add_edge(Graph.PREGUNTA.value, END)
+    graph_builder.add_edge(Graph.MAIL.value, END)
+    graph_builder.add_edge(Graph.CALENDAR.value, END)
+    graph_builder.add_edge(Graph.TRAVEL.value, END)
+    graph_builder.add_edge(Graph.QUESTION.value, END)
 
     return graph_builder.compile()

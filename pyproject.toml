@@ -27,6 +27,7 @@ keyboard = "^0.13.5"
 gtts = "^2.5.3"
 pygame = "^2.6.1"
 pydub = "^0.25.1"
+tavily-python = "^0.5.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"
