@@ -13,10 +13,10 @@ class Node(Enum):
 
 
 class Graph(Enum):
-    VIAJE = "viaje_node"
-    CORREO = "correo_node"
-    CALENDARIO = "calendario_node"
-    PREGUNTA = "pregunta_node"
+    VIAJE = "viaje_subgraph"
+    CORREO = "correo_subgraph"
+    CALENDARIO = "calendario_subgraph"
+    PREGUNTA = "pregunta_subgraph"
 
 
 class ViajeNode(Enum):

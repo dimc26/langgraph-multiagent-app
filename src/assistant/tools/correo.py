@@ -9,7 +9,7 @@ from langchain_openai import ChatOpenAI
 
 
 class CorreoState(TypedDict):
-    user_input: str
+    correo_input: str
     correo: CorreoItem
 
 
@@ -24,7 +24,7 @@ def build_correo_chain() -> RunnableSerializable:
 
 def parser_correo_node(state: CorreoState) -> dict[str, Any]:
     correo_chain = build_correo_chain()
-    user_input = state["user_input"]
+    user_input = state["correo_input"]
     res = correo_chain.invoke({"text": user_input})
     print(res)
 

@@ -9,7 +9,7 @@ from langchain_openai import ChatOpenAI
 
 
 class ViajeState(TypedDict):
-    user_input: str
+    viaje_input: str
     viaje: ViajeItem
     packaging: str
     flights: str
@@ -27,7 +27,7 @@ def build_viaje_chain() -> RunnableSerializable:
 
 def parser_viaje_node(state: ViajeState) -> dict[str, Any]:
     viaje_chain = build_viaje_chain()
-    user_input = state["user_input"]
+    user_input = state["viaje_input"]
     res = viaje_chain.invoke({"text": user_input})
     print(res)
 

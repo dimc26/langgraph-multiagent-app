@@ -11,7 +11,7 @@ from langchain_openai import ChatOpenAI
 
 
 class CalendarioState(TypedDict):
-    user_input: str
+    calendario_input: str
     calendario: CalendarioItem
 
 
@@ -26,7 +26,7 @@ def build_calendario_chain() -> RunnableSerializable:
 
 def parser_calendario_node(state: CalendarioState) -> dict[str, Any]:
     calendario_chain = build_calendario_chain()
-    user_input = state["user_input"]
+    user_input = state["calendario_input"]
     res = calendario_chain.invoke({"text": user_input})
     print(res)
 

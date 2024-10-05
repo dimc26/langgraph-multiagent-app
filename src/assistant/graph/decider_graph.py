@@ -30,7 +30,7 @@ def route_pages(state: GraphState) -> Any:
     else:
         for field, value in decider.dict().items():
             if value:
-                send_state = {"user_input": user_input}
+                send_state = {f"{field}_input": user_input}
 
                 message = Send(
                     node=f"{field}_node",
