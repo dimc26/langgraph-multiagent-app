@@ -18,16 +18,21 @@ calendar_graph = build_calendar_graph()
 question_graph = build_question_graph()
 
 
+def send_to_end(messages):
+    mssg = Send(
+        node=END,
+        arg=None,
+    )
+    return mssg
+
 def route_pages(state: GraphState) -> Any:
     decider = state["decider"]
     recognized = state["recognized"]
     user_input = state["user_input"]
     messages = []
     if not recognized:
-        message = Send(
-            node=END,
-            arg=None,
-        )
+        mssg = send_to_end()
+        messages.append(mssg)
     else:
         for field, value in decider.dict().items():
             if value:
@@ -40,6 +45,8 @@ def route_pages(state: GraphState) -> Any:
                 messages.append(message)
         if not messages:
             play_audio("Lo siento, no he podido categorizar tu petición.")
+            mssg = send_to_end()
+            messages.append(mssg)
 
     return messages
 

@@ -12,7 +12,7 @@ def save_results(graph: CompiledGraph) -> None:
 def main() -> None:
     graph = build_assistant_graph()
     graph_config = RunnableConfig(
-        max_concurrency=2,
+        max_concurrency=4,
         recursion_limit=50,
     )
     res = graph.invoke(

@@ -3,7 +3,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "editor"
+name = "assistant"
 version = "0.1.0"
 authors = ["Los Bixos de Syntonize"]
 description = "Artículo Langgraph"
