@@ -25,7 +25,7 @@ def send_to_end(messages):
     )
     return mssg
 
-def route_pages(state: GraphState) -> Any:
+def route_tasks_nodes(state: GraphState) -> Any:
     decider = state["decider"]
     recognized = state["recognized"]
     user_input = state["user_input"]
@@ -57,7 +57,7 @@ def build_assistant_graph() -> CompiledGraph:
     graph_builder.add_edge(START, Node.DECIDER.value)
     graph_builder.add_conditional_edges(
         Node.DECIDER.value,
-        route_pages,
+        route_tasks_nodes,
         [Graph.MAIL.value, Graph.CALENDAR.value, Graph.TRAVEL.value, Graph.QUESTION.value, END],
     )
 

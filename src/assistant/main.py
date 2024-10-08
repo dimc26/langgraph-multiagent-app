@@ -21,7 +21,7 @@ def main() -> None:
     )
     print(res)
     save_results(graph)
-    play_audio("Ya he gestionado tu petición")
+    play_audio("Ya se ha gestionado tu petición")
 
 if __name__ == "__main__":
     main()

@@ -7,7 +7,7 @@ from assistant.namespace.enum import TravelNode
 from assistant.tools.travel import ViajeState, book_node, flights_node, packagin_node, parser_travel_node
 
 
-def route_pages(state: ViajeState) -> Any:
+def route_travel_nodes(state: ViajeState) -> Any:
     messages = []
 
     for node in [TravelNode.PACKING.value, TravelNode.FLIGHTS.value]:
@@ -28,7 +28,7 @@ def build_travel_graph() -> CompiledGraph:
     graph_builder.add_edge(START, TravelNode.PARSER.value)
     graph_builder.add_conditional_edges(
         TravelNode.PARSER.value,
-        route_pages,
+        route_travel_nodes,
         [
             TravelNode.FLIGHTS.value,
             TravelNode.PACKING.value,
