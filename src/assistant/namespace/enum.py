@@ -7,6 +7,7 @@ class Prompt(Enum):
     CALENDAR = "calendar"
     QUESTION = "question"
     TRAVEL = "travel"
+    TASK = "task"
 
 
 class Node(Enum):
