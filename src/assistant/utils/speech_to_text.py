@@ -2,12 +2,12 @@ import speech_recognition as sr
 from assistant.utils.text_to_speech import play_audio
 
 
-def parse_voice() -> tuple[bool,str]:
+def parse_voice() -> tuple[bool, str]:
     play_audio("¿En qué puedo ayudarte?")
     r = sr.Recognizer()
     with sr.Microphone() as source:
         try:
-            r.pause_threshold=1.5
+            r.pause_threshold = 1.5
             r.adjust_for_ambient_noise(source)
             audio_data = r.listen(source)
             text = r.recognize_google(audio_data, language="es-ES")

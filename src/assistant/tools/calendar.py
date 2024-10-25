@@ -3,7 +3,7 @@ from typing import Any, TypedDict
 from assistant import config as cfg
 from assistant.namespace.enum import Prompt
 from assistant.namespace.model import CalendarItem
-from assistant.prompts import build_decider_prompt
+from assistant.prompts import build_prompt
 from langchain_core.runnables import RunnableSerializable
 from langchain_openai import ChatOpenAI
 
@@ -15,7 +15,7 @@ class CalendarioState(TypedDict):
 
 
 def build_calendar_chain() -> RunnableSerializable:
-    prompt = build_decider_prompt(Prompt.CALENDAR.value)
+    prompt = build_prompt(Prompt.CALENDAR.value)
     model = ChatOpenAI(
         model=cfg.PARSER_MODEL,
     ).with_structured_output(CalendarItem)
@@ -29,6 +29,7 @@ def parser_calendar_node(state: CalendarioState) -> dict[str, Any]:
     res = calendar_chain.invoke({"text": user_input})
 
     return {"calendar": res}
+
 
 def set_event_node(state: CalendarioState) -> dict[str, str]:
     # TODO: invoke a model to get advice on clothing in view of the weather

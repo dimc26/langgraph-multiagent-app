@@ -18,12 +18,13 @@ calendar_graph = build_calendar_graph()
 question_graph = build_question_graph()
 
 
-def send_to_end(messages):
+def send_to_end() -> Send:
     mssg = Send(
         node=END,
         arg=None,
     )
     return mssg
+
 
 def route_tasks_nodes(state: GraphState) -> Any:
     decider = state["decider"]

@@ -2,7 +2,9 @@ import io
 import tempfile
 
 import pygame
+from assistant import config as cfg
 from gtts import gTTS
+from pydub import AudioSegment
 
 
 def play_audio(text: str) -> None:
@@ -12,9 +14,11 @@ def play_audio(text: str) -> None:
     myobj.write_to_fp(mp3_fp)
     mp3_fp.seek(0)
 
+    audio = AudioSegment.from_file(mp3_fp, format="mp3")
+    audio = audio.speedup(playback_speed=cfg.AUDIO_SPEED)
+
     with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as temp_mp3:
-        temp_mp3.write(mp3_fp.read())
-        temp_mp3.flush()
+        audio.export(temp_mp3.name, format="mp3")
         temp_filename = temp_mp3.name
 
     pygame.mixer.init()

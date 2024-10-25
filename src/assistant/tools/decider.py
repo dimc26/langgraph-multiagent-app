@@ -2,8 +2,8 @@ from typing import Any, TypedDict
 
 from assistant import config as cfg
 from assistant.namespace.enum import Prompt
-from assistant.namespace.model import CalendarItem, DeciderOptions, MailItem, QuestionItem, TravelItem
-from assistant.prompts import build_decider_prompt
+from assistant.namespace.model import DeciderOptions
+from assistant.prompts import build_prompt
 from assistant.utils.speech_to_text import parse_voice
 from assistant.utils.text_to_speech import play_audio
 from langchain_core.runnables import RunnableSerializable
@@ -23,7 +23,7 @@ class GraphState(TypedDict):
 
 
 def build_decider_chain() -> RunnableSerializable:
-    prompt = build_decider_prompt(Prompt.DECIDER.value)
+    prompt = build_prompt(Prompt.DECIDER.value)
     model = ChatOpenAI(
         model=cfg.PARSER_MODEL,
     ).with_structured_output(DeciderOptions)

@@ -2,8 +2,9 @@ import os
 
 from langchain_core.messages import SystemMessage
 from langchain_core.prompts.chat import ChatPromptTemplate, HumanMessagePromptTemplate
-from assistant.namespace.enum import Prompt
+
 from assistant import config as cfg
+from assistant.namespace.enum import Prompt
 
 
 def load_prompt_by_name(prompt_name: str) -> str:
@@ -13,7 +14,7 @@ def load_prompt_by_name(prompt_name: str) -> str:
         return f.read()
 
 
-def build_decider_prompt(prompt) -> ChatPromptTemplate:
+def build_prompt(prompt: str) -> ChatPromptTemplate:
     system_msg = SystemMessage(
         load_prompt_by_name(f"{prompt}_system"),
         name="base",
@@ -21,7 +22,7 @@ def build_decider_prompt(prompt) -> ChatPromptTemplate:
 
     if prompt != Prompt.DECIDER.value:
         prompt = Prompt.TASK.value
-        
+
     human_msg_prompt = load_prompt_by_name(f"{prompt}_human")
 
     return ChatPromptTemplate(

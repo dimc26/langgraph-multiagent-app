@@ -3,7 +3,7 @@ from typing import Any, TypedDict
 from assistant import config as cfg
 from assistant.namespace.enum import Prompt
 from assistant.namespace.model import QuestionItem
-from assistant.prompts import build_decider_prompt
+from assistant.prompts import build_prompt
 from langchain_core.runnables import RunnableSerializable
 from langchain_openai import ChatOpenAI
 from tavily import TavilyClient
@@ -16,7 +16,7 @@ class PreguntaState(TypedDict):
 
 
 def build_question_chain() -> RunnableSerializable:
-    prompt = build_decider_prompt(Prompt.QUESTION.value)
+    prompt = build_prompt(Prompt.QUESTION.value)
     model = ChatOpenAI(
         model=cfg.PARSER_MODEL,
     ).with_structured_output(QuestionItem)

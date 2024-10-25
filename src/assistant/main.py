@@ -1,6 +1,7 @@
 from langgraph.graph.state import CompiledGraph, RunnableConfig
 
 from assistant.graph.decider_graph import build_assistant_graph
+from assistant.tools.format_answer import format_answer
 from assistant.utils.text_to_speech import play_audio
 
 
@@ -19,9 +20,10 @@ def main() -> None:
         input={"recognized": True},
         config=graph_config,
     )
-    print(res)
+    formatted_res = format_answer(res)
+    play_audio(formatted_res.content)
     save_results(graph)
-    play_audio("Ya se ha gestionado tu petición")
+
 
 if __name__ == "__main__":
     main()

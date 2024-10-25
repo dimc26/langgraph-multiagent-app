@@ -3,7 +3,7 @@ from typing import Any, TypedDict
 from assistant import config as cfg
 from assistant.namespace.enum import Prompt
 from assistant.namespace.model import MailItem
-from assistant.prompts import build_decider_prompt
+from assistant.prompts import build_prompt
 from langchain_core.runnables import RunnableSerializable
 from langchain_openai import ChatOpenAI
 
@@ -16,7 +16,7 @@ class CorreoState(TypedDict):
 
 
 def build_mail_chain() -> RunnableSerializable:
-    prompt = build_decider_prompt(Prompt.MAIL.value)
+    prompt = build_prompt(Prompt.MAIL.value)
     model = ChatOpenAI(
         model=cfg.PARSER_MODEL,
     ).with_structured_output(MailItem)
@@ -34,13 +34,13 @@ def parser_mail_node(state: CorreoState) -> dict[str, Any]:
 
 def write_mail_node(state: CorreoState) -> dict[str, str]:
     # TODO: invoke a model to write an email from the input message
-    return {
-        "mail_message": f"Este es un correo escrito a partir del mensaje {state['mail'].message}"
-    }
+    return {"mail_message": f"Este es un correo escrito a partir del mensaje {state['mail'].message}"}
 
 
 def send_mail_node(state: CorreoState) -> dict[str, str]:
     # TODO: develop mail api component
     return {
-        "mail_output": f"Le he mandado un correo a {state['mail'].receiver} con el siguiente mensaje {state['mail_message']}"
+        "mail_output": (
+            f"Le he mandado un correo a {state['mail'].receiver} con el siguiente mensaje {state['mail_message']}"
+        )
     }

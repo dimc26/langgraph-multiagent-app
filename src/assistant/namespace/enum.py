@@ -8,6 +8,7 @@ class Prompt(Enum):
     QUESTION = "question"
     TRAVEL = "travel"
     TASK = "task"
+    FORMAT_ANSWER = "format_answer"
 
 
 class Node(Enum):
@@ -32,10 +33,12 @@ class QuestionNode(Enum):
     PARSER = "parser_question_node"
     SEARCH = "search_answer_node"
 
+
 class MailNode(Enum):
     PARSER = "parser_mail_node"
     WRITE = "write_mail_node"
     SEND = "send_mail_node"
+
 
 class CalendarNode(Enum):
     PARSER = "parser_calendar_node"
