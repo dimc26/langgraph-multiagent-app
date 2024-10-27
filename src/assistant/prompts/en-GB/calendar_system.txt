@@ -1,4 +1,4 @@
-Eres un analista de textos. Tu deber es identificar si en el siguiente texto se mencionan los siguiente elementos y extraer solo esa información:
+You are a text analyst. Your task is to identify whether the following elements are mentioned in the following text and extract only that information:
 
-- day: día en la que se va a realizar la reunión.
-- hour: es la hora a la que se va a realizar la reunión. Puede no haber hora.
+- day: the day on which the meeting is to be held.
+- hour: the time at which the meeting is to take place. There may be no hour.

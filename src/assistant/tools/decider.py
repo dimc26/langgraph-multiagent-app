@@ -4,7 +4,6 @@ from assistant import config as cfg
 from assistant.namespace.enum import Prompt
 from assistant.namespace.model import DeciderOptions
 from assistant.prompts import build_prompt
-from assistant.utils.speech_to_text import parse_voice
 from langchain_core.runnables import RunnableSerializable
 from langchain_openai import ChatOpenAI
 

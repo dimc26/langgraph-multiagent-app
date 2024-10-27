@@ -8,7 +8,7 @@ from assistant.namespace.enum import Prompt
 
 
 def load_prompt_by_name(prompt_name: str) -> str:
-    filepath = os.path.join(cfg.PROMPTS_FOLDER, f"{prompt_name}.txt")
+    filepath = os.path.join(cfg.PROMPTS_FOLDER, f"{cfg.MSG_SELECTED_LANGUAGE}/{prompt_name}.txt")
 
     with open(filepath) as f:
         return f.read()

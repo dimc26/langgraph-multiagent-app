@@ -1,2 +1,2 @@
-Por favor, extrae la información que corresponda:
+Please extract the appropriate information:
 {text}

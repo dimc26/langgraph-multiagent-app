@@ -33,6 +33,8 @@ def parser_calendar_node(state: CalendarioState) -> dict[str, Any]:
 
 def set_event_node(state: CalendarioState) -> dict[str, str]:
     # TODO: invoke a model to get advice on clothing in view of the weather
-    return {
-        "calendar_output": f"He creado un evento para el día {state['calendar'].day} a las {state['calendar'].hour}"
-    }
+    formatted_string = cfg.LANGUAGE_MSG["calendar_output"][cfg.MSG_SELECTED_LANGUAGE].format(
+        day=state["calendar"].day,
+        hour=state["calendar"].hour
+    )
+    return { "calendar_output": formatted_string}

@@ -1,4 +1,4 @@
-Eres un analista de textos. Tu deber es identificar si en el siguiente texto se mencionan los siguiente elementos y extraer solo esa información:
+You are a text analyst. Your task is to identify whether the following elements are mentioned in the following text and extract only that information:
 
-- destination: es el destino de un travel.
-- date: es la fecha o época en la que se planea hacer el travel.
+- destination: this is the destination of a trip.
+- date: is the date or time when the travel is planned.

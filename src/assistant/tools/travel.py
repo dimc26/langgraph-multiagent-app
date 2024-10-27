@@ -35,18 +35,26 @@ def parser_travel_node(state: TravelState) -> dict[str, Any]:
 
 def flights_node(state: TravelState) -> dict[str, str]:
     # TODO: develop the api component to recommend flights if the date is not specific or to buy tickets if exact date
-    return {"flights_output": f"Vuelo Syntonize con destino {state['travel'].destination} para {state['travel'].date}"}
+    formatted_string = cfg.LANGUAGE_MSG["flights_output"][cfg.MSG_SELECTED_LANGUAGE].format(
+        destination=state["travel"].destination,
+        date=state["travel"].date
+    )
+    return {"flights_output": formatted_string}
 
 
 def book_node(state: TravelState) -> dict[str, str]:
     # TODO: develop the api component to recommend hotels if the date is not specific or to book a room if exact date
-    return {"book_output": f"Reservado hotel Syntonize en {state['travel'].destination} para {state['travel'].date}"}
+    formatted_string = cfg.LANGUAGE_MSG["book_output"][cfg.MSG_SELECTED_LANGUAGE].format(
+        destination=state["travel"].destination,
+        date=state["travel"].date
+    )
+    return {"book_output": formatted_string}
 
 
 def packagin_node(state: TravelState) -> dict[str, str]:
     # TODO: invoke a model to get advice on clothing in view of the weather
-    return {
-        "packaging_output": (
-            f"Llévate una rebequita a {state['travel'].destination} que refresca en {state['travel'].date}"
-        )
-    }
+    formatted_string = cfg.LANGUAGE_MSG["packaging_output"][cfg.MSG_SELECTED_LANGUAGE].format(
+        destination=state["travel"].destination,
+        date=state["travel"].date
+    )
+    return {"packaging_output": formatted_string}

@@ -34,13 +34,16 @@ def parser_mail_node(state: CorreoState) -> dict[str, Any]:
 
 def write_mail_node(state: CorreoState) -> dict[str, str]:
     # TODO: invoke a model to write an email from the input message
-    return {"mail_message": f"Este es un correo escrito a partir del mensaje {state['mail'].message}"}
+    formatted_string = cfg.LANGUAGE_MSG["mail_message"][cfg.MSG_SELECTED_LANGUAGE].format(
+        message=state["mail"].message
+    )
+    return {"mail_message": formatted_string}
 
 
 def send_mail_node(state: CorreoState) -> dict[str, str]:
     # TODO: develop mail api component
-    return {
-        "mail_output": (
-            f"Le he mandado un correo a {state['mail'].receiver} con el siguiente mensaje {state['mail_message']}"
-        )
-    }
+    formatted_string = cfg.LANGUAGE_MSG["mail_output"][cfg.MSG_SELECTED_LANGUAGE].format(
+        receiver=state["mail"].receiver,
+        mail_message=state["mail_message"]
+    )
+    return {"mail_output": formatted_string}

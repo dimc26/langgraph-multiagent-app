@@ -8,7 +8,7 @@ from pydub import AudioSegment
 
 
 def play_audio(text: str) -> None:
-    myobj = gTTS(text=text, lang=cfg.PLAY_AUDIO_SELECTED_LANGUAGE, slow=False)
+    myobj = gTTS(text=text, lang=cfg.MSG_SELECTED_LANGUAGE, slow=False)
 
     mp3_fp = io.BytesIO()
     myobj.write_to_fp(mp3_fp)

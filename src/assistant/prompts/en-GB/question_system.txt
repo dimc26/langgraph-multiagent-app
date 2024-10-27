@@ -1,3 +1,3 @@
-Eres un analista de textos. Tu deber es identificar si en el siguiente texto se realiza una question y extraer solo esa información:
+You are a text analyst. Your task is to identify whether a question is being asked in the following text and to extract only that information:
 
-- text: es la question que se está realizando.
+- text: is the question being asked.
