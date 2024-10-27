@@ -1,9 +1,11 @@
-from dotenv import load_dotenv
+import subprocess
 
-load_dotenv()
+from dotenv import dotenv_values
+
+envs = dotenv_values()
+envs_cmd = " ".join([f"{key}={value}" for key, value in envs.items()])
 
 
 if __name__ == "__main__":
-    from assistant.main import main
-
-    main()
+    cmd = f"{envs_cmd} streamlit run src/front/main.py"
+    subprocess.run(cmd, shell=True)

@@ -10,7 +10,6 @@ from assistant.graph.question_graph import build_question_graph
 from assistant.graph.travel_graph import build_travel_graph
 from assistant.namespace.enum import Graph, Node
 from assistant.tools.decider import GraphState, decider_node
-from assistant.utils.text_to_speech import play_audio
 
 travel_graph = build_travel_graph()
 mail_graph = build_mail_graph()
@@ -28,26 +27,20 @@ def send_to_end() -> Send:
 
 def route_tasks_nodes(state: GraphState) -> Any:
     decider = state["decider"]
-    recognized = state["recognized"]
     user_input = state["user_input"]
     messages = []
-    if not recognized:
+    for field, value in decider.dict().items():
+        if value:
+            send_state = {f"{field}_input": user_input}
+
+            message = Send(
+                node=f"{field}_graph",
+                arg=send_state,
+            )
+            messages.append(message)
+    if not messages:
         mssg = send_to_end()
         messages.append(mssg)
-    else:
-        for field, value in decider.dict().items():
-            if value:
-                send_state = {f"{field}_input": user_input}
-
-                message = Send(
-                    node=f"{field}_graph",
-                    arg=send_state,
-                )
-                messages.append(message)
-        if not messages:
-            play_audio("Lo siento, no he podido categorizar tu petición.")
-            mssg = send_to_end()
-            messages.append(mssg)
 
     return messages
 

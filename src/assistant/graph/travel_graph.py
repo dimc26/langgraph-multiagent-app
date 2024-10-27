@@ -4,10 +4,10 @@ from langgraph.graph import END, START, StateGraph
 from langgraph.graph.graph import CompiledGraph, Send
 
 from assistant.namespace.enum import TravelNode
-from assistant.tools.travel import ViajeState, book_node, flights_node, packagin_node, parser_travel_node
+from assistant.tools.travel import TravelState, book_node, flights_node, packagin_node, parser_travel_node
 
 
-def route_travel_nodes(state: ViajeState) -> Any:
+def route_travel_nodes(state: TravelState) -> Any:
     messages = []
 
     for node in [TravelNode.PACKING.value, TravelNode.FLIGHTS.value]:
@@ -21,7 +21,7 @@ def route_travel_nodes(state: ViajeState) -> Any:
 
 
 def build_travel_graph() -> CompiledGraph:
-    graph_builder = StateGraph(ViajeState)
+    graph_builder = StateGraph(TravelState)
     graph_builder.add_node(TravelNode.PARSER.value, parser_travel_node)
     graph_builder.add_node(TravelNode.FLIGHTS.value, flights_node)
     graph_builder.add_node(TravelNode.PACKING.value, packagin_node)

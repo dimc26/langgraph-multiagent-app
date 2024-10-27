@@ -6,4 +6,4 @@ Eres un analista de textos. Tu deber es identificar si en el siguiente texto se 
 Para diferenciar el mensaje de las acciones ten en cuenta que estas pueden ser:
 - question: pide responder a una pregunta.
 - calendar: pide poner una reunión.
-- travel: pide organizar un viaje.
+- travel: pide organizar un travel.

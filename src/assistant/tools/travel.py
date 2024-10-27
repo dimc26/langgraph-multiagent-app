@@ -8,7 +8,7 @@ from langchain_core.runnables import RunnableSerializable
 from langchain_openai import ChatOpenAI
 
 
-class ViajeState(TypedDict):
+class TravelState(TypedDict):
     travel_input: str
     travel: TravelItem
     packaging_output: str
@@ -25,7 +25,7 @@ def build_travel_chain() -> RunnableSerializable:
     return prompt | model
 
 
-def parser_travel_node(state: ViajeState) -> dict[str, Any]:
+def parser_travel_node(state: TravelState) -> dict[str, Any]:
     travel_chain = build_travel_chain()
     user_input = state["travel_input"]
     res = travel_chain.invoke({"text": user_input})
@@ -33,17 +33,17 @@ def parser_travel_node(state: ViajeState) -> dict[str, Any]:
     return {"travel": res}
 
 
-def flights_node(state: ViajeState) -> dict[str, str]:
+def flights_node(state: TravelState) -> dict[str, str]:
     # TODO: develop the api component to recommend flights if the date is not specific or to buy tickets if exact date
     return {"flights_output": f"Vuelo Syntonize con destino {state['travel'].destination} para {state['travel'].date}"}
 
 
-def book_node(state: ViajeState) -> dict[str, str]:
+def book_node(state: TravelState) -> dict[str, str]:
     # TODO: develop the api component to recommend hotels if the date is not specific or to book a room if exact date
     return {"book_output": f"Reservado hotel Syntonize en {state['travel'].destination} para {state['travel'].date}"}
 
 
-def packagin_node(state: ViajeState) -> dict[str, str]:
+def packagin_node(state: TravelState) -> dict[str, str]:
     # TODO: invoke a model to get advice on clothing in view of the weather
     return {
         "packaging_output": (

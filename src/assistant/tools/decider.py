@@ -5,14 +5,12 @@ from assistant.namespace.enum import Prompt
 from assistant.namespace.model import DeciderOptions
 from assistant.prompts import build_prompt
 from assistant.utils.speech_to_text import parse_voice
-from assistant.utils.text_to_speech import play_audio
 from langchain_core.runnables import RunnableSerializable
 from langchain_openai import ChatOpenAI
 
 
 class GraphState(TypedDict):
     decider: DeciderOptions
-    recognized: bool
     user_input: str
     packaging_output: str
     flights_output: str
@@ -32,11 +30,8 @@ def build_decider_chain() -> RunnableSerializable:
 
 
 def decider_node(state: GraphState) -> dict[str, Any]:
-    recognized, text = parse_voice()
-    if not recognized:
-        return {"recognized": False}
-    play_audio("Dame un momento que gestiono tu petición")
+    text = state["user_input"]
     decider_chain = build_decider_chain()
     res = decider_chain.invoke({"text": text})
 
-    return {"decider": res, "recognized": True, "user_input": text}
+    return {"decider": res}

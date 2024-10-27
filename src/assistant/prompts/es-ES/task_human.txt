@@ -1,0 +1,2 @@
+Por favor, extrae la información que corresponda:
+{text}
