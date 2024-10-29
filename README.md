@@ -1,4 +1,4 @@
-# Sonya: your voice assistant
+# **Sonya: your voice assistant**
 This project is a voice assistant built with open-source technologies, using *SpeechRecognition* to convert spoken language into text and *LangGraph* as the orchestration framework to create a multi-agent system that enables Sonya to handle multiple tasks.
 
 The process begins with the user’s voice capture, which is converted into text for processing. This text serves as input to a decision node, which evaluates the user’s request and determines which tasks to execute from the four available options:
@@ -11,7 +11,7 @@ The process begins with the user’s voice capture, which is converted into text
 > [!NOTE]  
 >  A multi-agent system requires calling to an LLM, so you will need an API KEY to run the proyect. In our case we chose to use **gpt-4o-mini**.
 
-## Usage
+## **Usage**
 A frontend has been created to test the program. To get started, clone the repository and run the following commands from the root folder:
 ```
 poetry shell
@@ -28,7 +28,7 @@ After running these commands, click the localhost link provided in the terminal,
 > LANGUAGE = "english"
 >```
 
-## Building the voice component
+## **Building the voice component**
 To implement voice functionality in the assistant, it is essential to have the right components for audio processing.
 
 ### On macOS:
@@ -51,3 +51,7 @@ Next, you need to open a WSL terminal and run:
 sudo apt install ffmpeg
 ```
 These steps ensure that the audio environment is correctly configured, allowing voice input capture and audio playback in the wizard.
+
+## **Contributors**
+- [Diego Moya Córdoba](https://github.com/dimc26)  
+  - [Linkedin profile](https://www.linkedin.com/in/diego-moya-c%C3%B3rdoba-98b155195/?original_referer=https%3A%2F%2Fwww%2Egoogle%2Ecom%2F&originalSubdomain=es)
