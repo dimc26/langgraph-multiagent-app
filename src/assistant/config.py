@@ -8,8 +8,9 @@ TAVILY_API_KEY = os.environ["TAVILY_API_KEY"]
 
 AUDIO_SPEED = 1.3
 
-APP_NAME = "Susurritos"
+APP_NAME = "Sonya"
 
+# LANGUAGE = "spanish"
 LANGUAGE = "english"
 LANGUAGE_OPTIONS = {"spanish": "es-ES", "english": "en-GB"}
 MSG_SELECTED_LANGUAGE = LANGUAGE_OPTIONS[LANGUAGE]
