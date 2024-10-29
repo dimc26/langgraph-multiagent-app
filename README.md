@@ -53,5 +53,5 @@ sudo apt install ffmpeg
 These steps ensure that the audio environment is correctly configured, allowing voice input capture and audio playback in the wizard.
 
 ## **Contributors**
-- [Diego Moya Córdoba](https://github.com/dimc26)  
+- [dmoya@syntonize.com](https://github.com/dimc26)  
   - [Linkedin profile](https://www.linkedin.com/in/diego-moya-c%C3%B3rdoba-98b155195/?original_referer=https%3A%2F%2Fwww%2Egoogle%2Ecom%2F&originalSubdomain=es)
