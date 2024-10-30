@@ -55,3 +55,5 @@ These steps ensure that the audio environment is correctly configured, allowing 
 ## **Contributors**
 - [dmoya@syntonize.com](https://github.com/dimc26)  
   - [Linkedin profile](https://www.linkedin.com/in/diego-moya-c%C3%B3rdoba-98b155195/?original_referer=https%3A%2F%2Fwww%2Egoogle%2Ecom%2F&originalSubdomain=es)
+- [agarciag@syntonize.com](https://github.com/Anuko50)  
+  - [Linkedin profile](https://www.linkedin.com/in/ana-garc%C3%ADa-galindo/?originalSubdomain=es)
